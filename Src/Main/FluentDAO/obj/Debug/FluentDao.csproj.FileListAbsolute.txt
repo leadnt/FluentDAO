@@ -1,0 +1,12 @@
+D:\Projects\FluentDAO\Source\Main\FluentData\bin\Debug\FluentData.dll
+D:\Projects\FluentDAO\Source\Main\FluentData\bin\Debug\FluentData.pdb
+D:\Projects\FluentDAO\Source\Main\FluentData\obj\Debug\FluentData.dll
+D:\Projects\FluentDAO\Source\Main\FluentData\obj\Debug\FluentData.pdb
+D:\Projects\FluentDAO\Src\Main\FluentData\bin\Debug\LeadNT.FluentDAO.dll
+D:\Projects\FluentDAO\Src\Main\FluentData\bin\Debug\LeadNT.FluentDAO.pdb
+D:\Projects\FluentDAO\Src\Main\FluentData\obj\Debug\LeadNT.FluentDAO.dll
+D:\Projects\FluentDAO\Src\Main\FluentData\obj\Debug\LeadNT.FluentDAO.pdb
+D:\Projects\FluentDAO\Src\Main\FluentDAO\bin\Debug\LeadNT.FluentDAO.dll
+D:\Projects\FluentDAO\Src\Main\FluentDAO\bin\Debug\LeadNT.FluentDAO.pdb
+D:\Projects\FluentDAO\Src\Main\FluentDAO\obj\Debug\LeadNT.FluentDAO.dll
+D:\Projects\FluentDAO\Src\Main\FluentDAO\obj\Debug\LeadNT.FluentDAO.pdb
