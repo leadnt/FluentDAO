@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FluentDAO")]
-[assembly: AssemblyCopyright("Copyright ©  2013 - The Fluent Data Project & LeadNT")]
+[assembly: AssemblyCopyright("Copyright ©  2015 - Leadnt.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: InternalsVisibleTo("FluentDAO.UnitTests")]
