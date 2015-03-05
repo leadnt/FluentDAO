@@ -1,6 +1,6 @@
 using System;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public interface IInsertBuilderDynamic : IExecute, IExecuteReturnLastId
 	{

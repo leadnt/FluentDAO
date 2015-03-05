@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public class DbCommandData
 	{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace LeadNT.FluentDAO.Providers.Common
+namespace FluentDAO.Providers.Common
 {
 	internal class DbTypeMapper
 	{

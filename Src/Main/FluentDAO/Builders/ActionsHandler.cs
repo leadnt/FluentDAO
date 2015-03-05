@@ -1,11 +1,11 @@
-﻿using LeadNT.FluentDAO.Atrributes;
+﻿using FluentDAO.Atrributes;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal class ActionsHandler
 	{

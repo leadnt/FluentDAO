@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal class PropertyExpressionParser<T>
 	{

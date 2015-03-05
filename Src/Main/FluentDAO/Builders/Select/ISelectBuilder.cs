@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public interface ISelectBuilder<TEntity>
 	{

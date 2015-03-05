@@ -1,6 +1,6 @@
 ﻿using System.Dynamic;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public partial class DbContext
 	{

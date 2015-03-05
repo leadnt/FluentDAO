@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using LeadNT.FluentDAO.Providers.Common;
-using LeadNT.FluentDAO.Providers.Common.Builders;
+using FluentDAO.Providers.Common;
+using FluentDAO.Providers.Common.Builders;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public class SqlServerCompactProvider : IDbProvider
 	{

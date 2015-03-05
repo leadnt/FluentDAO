@@ -8,8 +8,8 @@
     <ProjectGuid>{B5AE821B-7728-49B3-9119-3BBC4C8E58E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LeadNT.FluentDAO</RootNamespace>
-    <AssemblyName>LeadNT.FluentDAO</AssemblyName>
+    <RootNamespace>FluentDAO</RootNamespace>
+    <AssemblyName>FluentDAO</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

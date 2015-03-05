@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
     internal class QueryHandler<TEntity>
     {

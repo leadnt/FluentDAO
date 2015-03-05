@@ -1,4 +1,4 @@
-﻿namespace LeadNT.FluentDAO
+﻿namespace FluentDAO
 {
 	internal class DeleteBuilder : BaseDeleteBuilder, IDeleteBuilder
 	{

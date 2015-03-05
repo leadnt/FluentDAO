@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal class AutoMapper
 	{

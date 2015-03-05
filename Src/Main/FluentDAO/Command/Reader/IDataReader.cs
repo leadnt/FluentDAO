@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public interface IDataReader : System.Data.IDataReader
 	{

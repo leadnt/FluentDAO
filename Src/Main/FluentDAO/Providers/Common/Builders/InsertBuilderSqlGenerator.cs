@@ -1,4 +1,4 @@
-﻿namespace LeadNT.FluentDAO.Providers.Common.Builders
+﻿namespace FluentDAO.Providers.Common.Builders
 {
 	internal class InsertBuilderSqlGenerator
 	{

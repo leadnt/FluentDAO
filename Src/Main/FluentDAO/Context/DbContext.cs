@@ -1,4 +1,4 @@
-﻿namespace LeadNT.FluentDAO
+﻿namespace FluentDAO
 {
 	public partial class DbContext : IDbContext
 	{

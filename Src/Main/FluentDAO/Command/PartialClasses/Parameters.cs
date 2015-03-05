@@ -4,7 +4,7 @@ using System;
 using System.Text;
 using System.Linq;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal partial class DbCommand
 	{

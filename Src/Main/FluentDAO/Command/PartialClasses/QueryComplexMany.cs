@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal partial class DbCommand
 	{

@@ -1,7 +1,7 @@
 using System;
 using System.Dynamic;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public interface IDbContext : IDisposable
 	{

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace LeadNT.FluentDAO.Atrributes
+namespace FluentDAO.Atrributes
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class IgnoreAttribute:Attribute

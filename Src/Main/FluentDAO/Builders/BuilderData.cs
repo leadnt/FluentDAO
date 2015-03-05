@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public class BuilderData
 	{

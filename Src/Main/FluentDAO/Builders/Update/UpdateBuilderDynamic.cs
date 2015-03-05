@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Dynamic;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal class UpdateBuilderDynamic : BaseUpdateBuilder, IUpdateBuilderDynamic, IInsertUpdateBuilderDynamic
 	{

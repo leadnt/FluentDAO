@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 
-namespace LeadNT.FluentDAO.Providers.Common
+namespace FluentDAO.Providers.Common
 {
 	internal class ConnectionFactory
 	{

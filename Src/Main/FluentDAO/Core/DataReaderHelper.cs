@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal class DataReaderHelper
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	internal class DataReaderField
 	{

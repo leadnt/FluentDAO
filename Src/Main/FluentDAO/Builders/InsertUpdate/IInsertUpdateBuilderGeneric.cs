@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public interface IInsertUpdateBuilder<T>
 	{

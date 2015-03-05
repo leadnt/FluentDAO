@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace LeadNT.FluentDAO
+namespace FluentDAO
 {
 	public class ConnectionEventArgs : EventArgs
 	{
