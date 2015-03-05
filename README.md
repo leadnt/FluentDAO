@@ -1,6 +1,6 @@
 # FluentDAO
 a dotnet database orm framework.
-forked from FluentData.
+forked from FluentData(3.0.0).
 
 
 Table of Contents
