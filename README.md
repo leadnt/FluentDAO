@@ -1,7 +1,7 @@
 # FluentDAO 3.1
 a dotnet database orm framework.
-3.1 fix the in() bug.
-3.0 forked from FluentData(3.0.0).
+-   3.1 fix the in() bug.
+-   3.0 forked from FluentData(3.0.0).
 
 
 
