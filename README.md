@@ -1,6 +1,10 @@
-# FluentDAO
+# FluentDAO 3.1
 a dotnet database orm framework.
-forked from FluentData(3.0.0).
+-   2015/06/17 3.1 fix the in() bug.then you can use like In(...),iN (...),IN (...),IN(...),whatever if you use fluentdata you will get a exception.
+-   2015/03/15 3.0 forked from FluentData(3.0.0).and add Ignore attribute to ignore property which you want.
+
+
+
 
 
 Table of Contents
@@ -239,7 +243,6 @@ Output parameter:
 List of parameters - in operator:
 
     List<int> ids = new List<int>() { 1, 2, 3, 4 };
-    //becareful here,don't leave any whitespace around in(...) syntax.
     dynamic products = Context.Sql(@"select * from Product
                 where ProductId in(@0)", ids).QueryMany<dynamic>();
 
