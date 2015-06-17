@@ -10,7 +10,7 @@ namespace FluentDAO
 		public bool UseMultipleResultsets { get; set; }
 		public IDataReader Reader { get; set; }
 		internal ExecuteQueryHandler ExecuteQueryHandler;
-		public StringBuilder Sql { get; private set; }
+		public StringBuilder Sql { get; set; }
 
 		public DbCommandData(DbContext context, System.Data.IDbCommand innerCommand)
 		{

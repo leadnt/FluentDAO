@@ -3,6 +3,7 @@ using System.Data;
 using System;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FluentDAO
 {
@@ -55,8 +56,11 @@ namespace FluentDAO
 			}
 			newInStatement.Append(")");
 
-			var oldInStatement = string.Format(" in({0})", Data.Context.Data.FluentDAOProvider.GetParameterName(name));
-			Data.Sql.Replace(oldInStatement, newInStatement.ToString());
+			var oldInStatement = string.Format(@" in(\s*)\({0}\)", Data.Context.Data.FluentDAOProvider.GetParameterName(name));
+			
+            string str = Regex.Replace(Data.Sql.ToString(), oldInStatement, newInStatement.ToString(), RegexOptions.IgnoreCase);
+            Data.Sql = new StringBuilder(str);
+
 		}
 
 		private IDbDataParameter AddParameterToInnerCommand(string name, object value, DataTypes parameterType = DataTypes.Object, ParameterDirection direction = ParameterDirection.Input, int size = 0)
