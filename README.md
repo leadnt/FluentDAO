@@ -239,7 +239,6 @@ Output parameter:
 List of parameters - in operator:
 
     List<int> ids = new List<int>() { 1, 2, 3, 4 };
-    //becareful here,don't leave any whitespace around in(...) syntax.
     dynamic products = Context.Sql(@"select * from Product
                 where ProductId in(@0)", ids).QueryMany<dynamic>();
 
