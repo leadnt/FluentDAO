@@ -1,5 +1,7 @@
-# FluentDAO 3.1
+# FluentDAO 3.2
 a dotnet database orm framework.
+
+-   2016/04/29 3.2 support commit transaction automatic using Use “UseAutoCommitTransaction(true)".
 -   2015/06/17 3.1 fix the in() bug.then you can use like In(...),iN (...),IN (...),IN(...),whatever if you use fluentdata you will get a exception.
 -   2015/03/15 3.0 forked from FluentData(3.0.0).and add Ignore attribute to ignore property which you want.
 
@@ -510,10 +512,12 @@ FluentDAO supports transactions. When you use transactions its important to wrap
         context.Commit();
     }
 
-    And Now(2016/04/29) FluentDao support automatic commit transaction.it's can help some people who use Transaction but always forget to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".
+** <a href="#UseAutoCommitTransaction"></a>UseAutoCommitTransaction **
+And Now(2016/04/29) FluentDao support automatic commit transaction.it's can help some people who use Transaction but always forget to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".
 
 
-**Entity factory**
+<a href="#EntityFactory"></a>
+** Entity factory**
 The entity factory is responsible for creating object instances during automapping. If you have some complex business objects that require special actions during creation, you can create your own custom entity factory:
 
     List<Product> products = Context.EntityFactory(new CustomEntityFactory())
