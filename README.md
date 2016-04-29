@@ -535,6 +535,18 @@ FluentDAO supports transactions. When you use transactions its important to wrap
 **UseAutoCommitTransaction**
 And Now(2016/04/29) FluentDao support automatic commit transaction.it's can help some people who use Transaction but always forget to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".
 
+    using (var context = Context.UseAutoCommitTransaction(true))
+    {
+        context.Sql("update Product set Name = @0 where ProductId = @1")
+                    .Parameters("The Warren Buffet Way", 1)
+                    .Execute();
+
+        context.Sql("update Product set Name = @0 where ProductId = @1")
+                    .Parameters("Bill Gates Bio", 2)
+                    .Execute();
+    }
+<span color="#FF0000">It will be commit when you use UseAutoCommitTransaction(true)，whether you do commit() or not.</span>
+    
 
 <a name="EntityFactory"></a>
 **Entity factory**
