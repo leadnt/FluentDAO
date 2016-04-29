@@ -510,6 +510,8 @@ FluentDAO supports transactions. When you use transactions its important to wrap
         context.Commit();
     }
 
+    And Now(2016/04/29) FluentDao support automatic commit transaction.it's can help some people who use Transaction but always forget to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".
+
 
 **Entity factory**
 The entity factory is responsible for creating object instances during automapping. If you have some complex business objects that require special actions during creation, you can create your own custom entity factory:
