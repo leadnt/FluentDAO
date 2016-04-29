@@ -531,7 +531,7 @@ FluentDAO supports transactions. When you use transactions its important to wrap
         context.Commit();
     }
 
-<a href="#UseAutoCommitTransaction"></a>
+<a name="UseAutoCommitTransaction"></a>
 **UseAutoCommitTransaction**
 And Now(2016/04/29) FluentDao support automatic commit transaction.it's can help some people who use Transaction but always forget to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".
 
