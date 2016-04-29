@@ -20,7 +20,8 @@
 
     <section class="main-content">
       <h1>
-<a id="fluentdao-32" class="anchor" href="#fluentdao-32" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FluentDAO 3.2</h1>
+<a id="fluentdao-32-" class="anchor" href="#fluentdao-32-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FluentDAO 3.2 <a href="https://travis-ci.org/leadnt/FluentDAO"><img src="https://travis-ci.org/leadnt/FluentDAO.svg?branch=master" alt="Build Status"></a>
+</h1>
 
 <p>a dotnet database orm framework.</p>
 
@@ -628,7 +629,7 @@ FluentDAO supports transactions. When you use transactions its important to wrap
 
 <p><a name="UseAutoCommitTransaction"></a>
 <strong>UseAutoCommitTransaction</strong>
-And Now(2016/04/29) FluentDao support automatic commit transaction.it will help some people who use Transaction but always forgot to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".</p>
+FluentDao support automatic commit transaction.it will help some people who use Transaction but always forgot to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".</p>
 
 <pre><code>using (var context = Context.UseAutoCommitTransaction(true))
 {
