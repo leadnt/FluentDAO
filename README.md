@@ -1,5 +1,7 @@
-# FluentDAO 3.1
+# FluentDAO 3.2
 a dotnet database orm framework.
+
+-   2016/04/29 3.2 support commit transaction automatic using Use “UseAutoCommitTransaction(true)".
 -   2015/06/17 3.1 fix the in() bug.then you can use like In(...),iN (...),IN (...),IN(...),whatever if you use fluentdata you will get a exception.
 -   2015/03/15 3.0 forked from FluentData(3.0.0).and add Ignore attribute to ignore property which you want.
 
@@ -33,24 +35,27 @@ Table of Contents
     -   [Mapping](#CodeSamplesMapping)
     -   [Multiple result sets](#MultiResultSets)
     -   [Select data & Paging](#SelectData)
+    -   [Ignore fields during CRUD](#ignore)
     -   [Insert data](#InsertData)
     -   [Update data](#UpdateData)
     -   [Delete data](#DeleteData)
     -   [Stored procedures](#StoredProcedures)
     -   [Transactions](#Transactions)
+    -   [UseAutoCommitTransaction](#UseAutoCommitTransaction)
     -   [Entity factory](#EntityFactory)
+    -   [Contact Me](#contactme)
 
 Contents
 ========
-
+<a name="GettingStarted"></a>
 Getting started
 ---------------
-
+<a name="Requirements"></a>
 **Requirements**
 
 -   .NET 4.5.
 
-
+<a name="SupportedDatabases"></a>
 **Supported databases**
 
 -   MS SQL Server using the native .NET driver.
@@ -63,7 +68,7 @@ Getting started
 -   PostgreSql through the [Npgsql](http://pgfoundry.org/projects/npgsql/) provider.
 -   IBM DB2
 
-
+<a name="Installation"></a>
 **Installation**
 If you are using NuGet:
 
@@ -75,15 +80,19 @@ If you are not using NuGet:
 2.  Extract it, and copy the files to your solution or project folder.
 3.  Add a project reference to FluentDAO.dll.
 
+<a name="CoreConcepts"></a>
 Core concepts
 -------------
 
+<a name="DbContext"></a>
 **DbContext**
 This class is the starting point for working with FluentDAO. It has properties for defining configurations such as the connection string to the database, and operations for querying the database.
 
+<a name="DbCommand"></a>
 **DbCommand**
 This is the class that is responsible for performing the actual query against the database.
 
+<a name="Events"></a>
 **Events**
 The DbContext class has support for the following events:
 
@@ -96,9 +105,11 @@ The DbContext class has support for the following events:
 
 By using any of these then you can for instance write to the log if an error has occurred or when a query has been executed.
 
+<a name="Builders"></a>
 **Builders**
 A builder provides a nice fluent API for generating SQL for insert, update and delete queries.
 
+<a name="Mapping"></a>
 **Mapping**
 FluentDAO can automap the result from a SQL query to either a dynamic type (new in .NET 4.0) or to your own .NET entity type (POCO - Plain Old CLR Object) by using the following convention:
 
@@ -113,7 +124,7 @@ Automap to a dynamic type:
 
 1.  For dynamic types every field will be automapped to a property with the same name. For instance the field name Name would be automapped to the Name property.
 
-
+<a name="Dispose"></a>
 **When should you dispose?**
 
 -   DbContext must be disposed if you have enabled UseTransaction or UseSharedConnection.
@@ -122,9 +133,11 @@ Automap to a dynamic type:
 
 In all the other cases dispose will be handled automatically by FluentDAO. This means that a database connection is opened just before a query is executed and closed just after the execution has been completed.
 
+
+<a name="CodeSamples"></a>
 Code samples
 ------------
-
+<a name="InitDbContext"></a>
 **Create and initialize a DbContext**
 The connection string on the DbContext class can be initialized either by giving the connection string name in the *.config file or by sending in the entire connection string.
 
@@ -156,6 +169,7 @@ or by calling the ConnectionString method to set the connection string explicitl
 If you want to work against another database than SqlServer then simply replace the new SqlServerProvider() in the sample code above with any of the following:
 AccessProvider, DB2Provider, OracleProvider, MySqlProvider, PostgreSqlProvider, SqliteProvider, SqlServerCompact, SqlAzureProvider, SqlServerProvider.
 
+<a name="Query"></a>
 **Query for a list of items**
 Return a list of dynamic objects (new in .NET 4.0):
 
@@ -175,6 +189,7 @@ Return a list of strongly typed objects in a custom collection:
 Return a DataTable:
 See Query for a single item.
 
+<a name="QuerySingle"></a>
 **Query for a single item**
 
 Return as a dynamic object:
@@ -194,19 +209,19 @@ Return as a DataTable:
     DataTable products = Context.Sql("select * from Product").QuerySingle<DataTable>();
 
 Both QueryMany<DataTable> and QuerySingle<DataTable> can be called to return a DataTable, but since QueryMany returns a List<DataTable> then it's more convenient to call QuerySingle which returns just DataTable. Eventhough the method is called QuerySingle then multiple rows will still be returned as part of the DataTable.
-
+<a name="QueryValue"></a>
 **Query for a scalar value**
 
     int numberOfProducts = Context.Sql(@"select count(*)
                 from Product").QuerySingle<int>();
 
-
+<a name="QueryValues"></a>
 **Query for a list of scalar values**
 
     List<int> productIds = Context.Sql(@"select ProductId
                     from Product").QueryMany<int>();
 
-
+<a name="Parameters"></a>
 **Parameters**
 Indexed parameters:
 
@@ -252,7 +267,7 @@ like operator:
     string cens = "%abc%";
     Context.Sql("select * from Product where ProductName like @0",cens);
 
-
+<a name="CodeSamplesMapping"></a>
 **Mapping**
 Automapping - 1:1 match between the database and the .NET object:
 
@@ -316,6 +331,7 @@ Or if you have a complex entity type where you need to control how it is created
     }
 
 
+<a name="MultiResultSets"></a>
 **Multiple result sets**
 FluentDAO supports multiple resultsets. This allows you to do multiple queries in a single database call. When this feature is used it's important to wrap the code inside a using statement as shown below in order to make sure that the database connection is closed.
 
@@ -330,6 +346,7 @@ FluentDAO supports multiple resultsets. This allows you to do multiple queries i
 
 The first time the Query method is called it does a single query against the database. The second time the Query is called, FluentDAO already knows that it's running in a multiple result set mode, so it reuses the data retrieved from the first query.
 
+<a name="SelectData"></a>
 **Select data and Paging**
 A select builder exists to make selecting data and paging easy:
 
@@ -342,6 +359,7 @@ A select builder exists to make selecting data and paging easy:
 
 By calling Paging(1, 10) then the first 10 products will be returned.
 
+<a name="InsertData"></a>
 **Insert data**
 Using SQL:
 
@@ -371,6 +389,7 @@ Using a builder with automapping:
 
 We send in ProductId to the AutoMap method to get AutoMap to ignore and not map the ProductId since this property is an identity field where the value is generated in the database.
 
+<a name="UpdateData"></a>
 **Update data**
 Using SQL:
 
@@ -411,7 +430,7 @@ if you want ignore the exception, or the property not used for map data table,th
     context.IgnoreIfAutoMapFails(true);
 
 
-
+<a name="ignore"></a>
 **Ignore Attribute**
 And sometimes you need to add some extension property in entity class, when Insert/Update,will be exception,because not find the data column.on this time,you can add the [Ignore](/wikipage?title=Ignore&referringTitle=Documentation) to the special property,like this:
 
@@ -439,7 +458,7 @@ so,if you used to extension entity class,the better way is use both context.Igno
         builder.Column(x => x.CategoryId);
     }
 
-
+<a name="DeleteData"></a>
 **Delete data**
 Using SQL:
 
@@ -455,6 +474,7 @@ Using a builder:
                 .Execute();
 
 
+<a name="StoredProcedures"></a>
 **Stored procedure**
 Using SQL:
 
@@ -494,6 +514,7 @@ Using a builder with automapping and expressions:
                 .Parameter(x => x.Name).Execute();
 
 
+<a name="Transactions"></a>
 **Transactions**
 FluentDAO supports transactions. When you use transactions its important to wrap the code inside a using statement to make sure that the database connection is closed. By default, if any exception occur or if Commit is not called then Rollback will automatically be called.
 
@@ -510,7 +531,24 @@ FluentDAO supports transactions. When you use transactions its important to wrap
         context.Commit();
     }
 
+<a name="UseAutoCommitTransaction"></a>
+**UseAutoCommitTransaction**
+FluentDao support automatic commit transaction.it will help some people who use Transaction but always forgot to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".
 
+    using (var context = Context.UseAutoCommitTransaction(true))
+    {
+        context.Sql("update Product set Name = @0 where ProductId = @1")
+                    .Parameters("The Warren Buffet Way", 1)
+                    .Execute();
+
+        context.Sql("update Product set Name = @0 where ProductId = @1")
+                    .Parameters("Bill Gates Bio", 2)
+                    .Execute();
+    }
+<span color="#FF0000">It will be commit when you use UseAutoCommitTransaction(true)，whether you do commit() or not.</span>
+    
+
+<a name="EntityFactory"></a>
 **Entity factory**
 The entity factory is responsible for creating object instances during automapping. If you have some complex business objects that require special actions during creation, you can create your own custom entity factory:
 
@@ -525,3 +563,13 @@ The entity factory is responsible for creating object instances during automappi
             return Activator.CreateInstance(type);
         }
     }
+    
+<a name="contactme"></a>
+**Contact Me**
+
+Email:roy@leadnt.com
+
+Above content is all about FluentDAO 3.2.
+
+
+
