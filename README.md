@@ -1,4 +1,4 @@
-# FluentDAO 3.2
+# FluentDAO 3.2 [![Build Status](https://travis-ci.org/leadnt/FluentDAO.svg?branch=master)](https://travis-ci.org/leadnt/FluentDAO)
 a dotnet database orm framework.
 
 -   2016/04/29 3.2 support commit transaction automatic using Use “UseAutoCommitTransaction(true)".
