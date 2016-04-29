@@ -1,40 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
+    <meta charset="UTF-8">
     <title>FluentDAO by leadnt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>FluentDAO</h1>
-        <h2>a dotnet database orm framework.forked from FluentData.</h2>
-        <a href="https://github.com/leadnt/FluentDAO" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">FluentDAO</h1>
+      <h2 class="project-tagline">a dotnet database orm framework.</h2>
+      <a href="https://github.com/leadnt/FluentDAO" class="btn">View on GitHub</a>
+      <a href="https://github.com/leadnt/FluentDAO/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/leadnt/FluentDAO/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
-<a id="fluentdao" class="anchor" href="#fluentdao" aria-hidden="true"><span class="octicon octicon-link"></span></a>FluentDAO</h1>
+    <section class="main-content">
+      <h1>
+<a id="fluentdao-32" class="anchor" href="#fluentdao-32" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FluentDAO 3.2</h1>
 
 <p>a dotnet database orm framework.</p>
 
+<ul>
+<li>  2016/04/29 3.2 support commit transaction automatic using Use “UseAutoCommitTransaction(true)".</li>
+<li>  2015/06/17 3.1 fix the in() bug.then you can use like In(...),iN (...),IN (...),IN(...),whatever if you use fluentdata you will get a exception.</li>
+<li>  2015/03/15 3.0 forked from FluentData(3.0.0).and add Ignore attribute to ignore property which you want.</li>
+</ul>
+
 <h2>
-<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of Contents</h2>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of Contents</h2>
 
 <ul>
 <li>
@@ -89,6 +86,8 @@
 </li>
 <li>  <a href="#SelectData">Select data &amp; Paging</a>
 </li>
+<li>  <a href="#ignore">Ignore fields during CRUD</a>
+</li>
 <li>  <a href="#InsertData">Insert data</a>
 </li>
 <li>  <a href="#UpdateData">Update data</a>
@@ -99,25 +98,32 @@
 </li>
 <li>  <a href="#Transactions">Transactions</a>
 </li>
+<li>  <a href="#UseAutoCommitTransaction">UseAutoCommitTransaction</a>
+</li>
 <li>  <a href="#EntityFactory">Entity factory</a>
+</li>
+<li>  <a href="#contactme">Contact Me</a>
 </li>
 </ul>
 </li>
 </ul>
 
 <h1>
-<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contents</h1>
+<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contents</h1>
+
+<p><a name="GettingStarted"></a></p>
 
 <h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h2>
 
-<p><strong>Requirements</strong></p>
+<p><a name="Requirements"></a>
+<strong>Requirements</strong></p>
 
 <ul>
 <li>  .NET 4.5.</li>
 </ul>
 
-<p>\
+<p><a name="SupportedDatabases"></a>
 <strong>Supported databases</strong></p>
 
 <ul>
@@ -132,8 +138,8 @@
 <li>  IBM DB2</li>
 </ul>
 
-<p>\
-<strong>Installation</strong>\
+<p><a name="Installation"></a>
+<strong>Installation</strong>
 If you are using NuGet:</p>
 
 <ul>
@@ -145,19 +151,24 @@ If you are using NuGet:</p>
 <ol>
 <li> Download the zip with the binary files.</li>
 <li> Extract it, and copy the files to your solution or project folder.</li>
-<li> Add a project reference to  LeadNT.FluentDAO.dll.</li>
+<li> Add a project reference to FluentDAO.dll.</li>
 </ol>
 
-<h2>
-<a id="core-concepts" class="anchor" href="#core-concepts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Core concepts</h2>
+<p><a name="CoreConcepts"></a></p>
 
-<p><strong>DbContext</strong>\
-This class is the starting point for working with FluentDAO. It has properties for defining configurations such as the connection string to the database, and operations for querying the database.\
-\
-<strong>DbCommand</strong>\
-This is the class that is responsible for performing the actual query against the database.\
-\
-<strong>Events</strong>\
+<h2>
+<a id="core-concepts" class="anchor" href="#core-concepts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Core concepts</h2>
+
+<p><a name="DbContext"></a>
+<strong>DbContext</strong>
+This class is the starting point for working with FluentDAO. It has properties for defining configurations such as the connection string to the database, and operations for querying the database.</p>
+
+<p><a name="DbCommand"></a>
+<strong>DbCommand</strong>
+This is the class that is responsible for performing the actual query against the database.</p>
+
+<p><a name="Events"></a>
+<strong>Events</strong>
 The DbContext class has support for the following events:</p>
 
 <ul>
@@ -169,30 +180,32 @@ The DbContext class has support for the following events:</p>
 <li>  OnExecuting</li>
 </ul>
 
-<p>By using any of these then you can for instance write to the log if an error has occurred or when a query has been executed.\
-\
-<strong>Builders</strong>\
-A builder provides a nice fluent API for generating SQL for insert, update and delete queries.\
-\
-<strong>Mapping</strong>\
-FluentDAO can automap the result from a SQL query to either a dynamic type (new in .NET 4.0) or to your own .NET entity type (POCO - Plain Old CLR Object) by using the following convention:\
-\
-Automap to an entity type:</p>
+<p>By using any of these then you can for instance write to the log if an error has occurred or when a query has been executed.</p>
+
+<p><a name="Builders"></a>
+<strong>Builders</strong>
+A builder provides a nice fluent API for generating SQL for insert, update and delete queries.</p>
+
+<p><a name="Mapping"></a>
+<strong>Mapping</strong>
+FluentDAO can automap the result from a SQL query to either a dynamic type (new in .NET 4.0) or to your own .NET entity type (POCO - Plain Old CLR Object) by using the following convention:</p>
+
+<p>Automap to an entity type:</p>
 
 <ol>
 <li> If the field name does not contain an underscore ("_") then it will try to try to automap to a property with the same name. For instance a field named "Name" would be automapped to a property also named "Name".</li>
 <li> If a field name does contain an underscore ("<em>") then it will try to map to a nested property. For instance a field named "Category</em>Name" would be automapped to the property "Category.Name".</li>
 </ol>
 
-<p>If there is a mismatch between the fields in the database and in the entity type then the alias keyword in SQL can be used or you can create your own mapping method. Check the mapping section below for code samples.\
-\
-Automap to a dynamic type:</p>
+<p>If there is a mismatch between the fields in the database and in the entity type then the alias keyword in SQL can be used or you can create your own mapping method. Check the mapping section below for code samples.</p>
+
+<p>Automap to a dynamic type:</p>
 
 <ol>
 <li> For dynamic types every field will be automapped to a property with the same name. For instance the field name Name would be automapped to the Name property.</li>
 </ol>
 
-<p>\
+<p><a name="Dispose"></a>
 <strong>When should you dispose?</strong></p>
 
 <ul>
@@ -203,20 +216,22 @@ Automap to a dynamic type:</p>
 
 <p>In all the other cases dispose will be handled automatically by FluentDAO. This means that a database connection is opened just before a query is executed and closed just after the execution has been completed.</p>
 
-<h2>
-<a id="code-samples" class="anchor" href="#code-samples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code samples</h2>
+<p><a name="CodeSamples"></a></p>
 
-<p><strong>Create and initialize a DbContext</strong>\
-The connection string on the DbContext class can be initialized either by giving the connection string name in the *.config file or by sending in the entire connection string.\
-\
-<strong>Important configurations</strong></p>
+<h2>
+<a id="code-samples" class="anchor" href="#code-samples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code samples</h2>
+
+<p><a name="InitDbContext"></a>
+<strong>Create and initialize a DbContext</strong>
+The connection string on the DbContext class can be initialized either by giving the connection string name in the *.config file or by sending in the entire connection string.</p>
+
+<p><strong>Important configurations</strong></p>
 
 <ul>
 <li>  IgnoreIfAutoMapFails - Calling this prevents automapper from throwing an exception if a column cannot be mapped to a corresponding property due to a name mismatch.</li>
 </ul>
 
-<p>\
-<strong>Create and initialize a DbContext</strong>\
+<p><strong>Create and initialize a DbContext</strong>
 The DbContext can be initialized by either calling ConnectionStringName which will read the connection string from the *.config file:</p>
 
 <pre><code>public IDbContext Context()
@@ -226,8 +241,7 @@ The DbContext can be initialized by either calling ConnectionStringName which wi
 }
 </code></pre>
 
-<p>\
-or by calling the ConnectionString method to set the connection string explicitly:</p>
+<p>or by calling the ConnectionString method to set the connection string explicitly:</p>
 
 <pre><code>public IDbContext Context()
 {
@@ -236,87 +250,81 @@ or by calling the ConnectionString method to set the connection string explicitl
 }
 </code></pre>
 
-<p>\
-<strong>Providers</strong>\
-If you want to work against another database than SqlServer then simply replace the new SqlServerProvider() in the sample code above with any of the following:\
-AccessProvider, DB2Provider, OracleProvider, MySqlProvider, PostgreSqlProvider, SqliteProvider, SqlServerCompact, SqlAzureProvider, SqlServerProvider.\
-\
-<strong>Query for a list of items</strong>\
+<p><strong>Providers</strong>
+If you want to work against another database than SqlServer then simply replace the new SqlServerProvider() in the sample code above with any of the following:
+AccessProvider, DB2Provider, OracleProvider, MySqlProvider, PostgreSqlProvider, SqliteProvider, SqlServerCompact, SqlAzureProvider, SqlServerProvider.</p>
+
+<p><a name="Query"></a>
+<strong>Query for a list of items</strong>
 Return a list of dynamic objects (new in .NET 4.0):</p>
 
 <pre><code>List&lt;dynamic&gt; products = Context.Sql("select * from Product").QueryMany&lt;dynamic&gt;();
 </code></pre>
 
-<p>\
-Return a list of strongly typed objects:</p>
+<p>Return a list of strongly typed objects:</p>
 
 <pre><code>List&lt;Product&gt; products = Context.Sql("select * from Product").QueryMany&lt;Product&gt;();
 </code></pre>
 
-<p>\
-Return a list of strongly typed objects in a custom collection:</p>
+<p>Return a list of strongly typed objects in a custom collection:</p>
 
 <pre><code>ProductionCollection products = Context.Sql("select * from Product").QueryMany&lt;Product, ProductionCollection&gt;();
 </code></pre>
 
-<p>\
-Return a DataTable:\
-See Query for a single item.\
-\
-<strong>Query for a single item</strong>\
-\
-Return as a dynamic object:</p>
+<p>Return a DataTable:
+See Query for a single item.</p>
+
+<p><a name="QuerySingle"></a>
+<strong>Query for a single item</strong></p>
+
+<p>Return as a dynamic object:</p>
 
 <pre><code>dynamic product = Context.Sql(@"select * from Product
                 where ProductId = 1").QuerySingle&lt;dynamic&gt;();
 </code></pre>
 
-<p>\
-Return as a strongly typed object:</p>
+<p>Return as a strongly typed object:</p>
 
 <pre><code>Product product = Context.Sql(@"select * from Product
             where ProductId = 1").QuerySingle&lt;Product&gt;();
 </code></pre>
 
-<p>\
-Return as a DataTable:</p>
+<p>Return as a DataTable:</p>
 
 <pre><code>DataTable products = Context.Sql("select * from Product").QuerySingle&lt;DataTable&gt;();
 </code></pre>
 
-<p>Both QueryMany and QuerySingle can be called to return a DataTable, but since QueryMany returns a List then it's more convenient to call QuerySingle which returns just DataTable. Eventhough the method is called QuerySingle then multiple rows will still be returned as part of the DataTable.\
-\
+<p>Both QueryMany and QuerySingle can be called to return a DataTable, but since QueryMany returns a List then it's more convenient to call QuerySingle which returns just DataTable. Eventhough the method is called QuerySingle then multiple rows will still be returned as part of the DataTable.
+<a name="QueryValue"></a>
 <strong>Query for a scalar value</strong></p>
 
 <pre><code>int numberOfProducts = Context.Sql(@"select count(*)
             from Product").QuerySingle&lt;int&gt;();
 </code></pre>
 
-<p>\
+<p><a name="QueryValues"></a>
 <strong>Query for a list of scalar values</strong></p>
 
 <pre><code>List&lt;int&gt; productIds = Context.Sql(@"select ProductId
                 from Product").QueryMany&lt;int&gt;();
 </code></pre>
 
-<p>\
-<strong>Parameters</strong>\
+<p><a name="Parameters"></a>
+<strong>Parameters</strong>
 Indexed parameters:</p>
 
 <pre><code>dynamic products = Context.Sql(@"select * from Product
             where ProductId = @0 or ProductId = @1", 1, 2).QueryMany&lt;dynamic&gt;();
 </code></pre>
 
-<p>\
-or:</p>
+<p>or:</p>
 
 <pre><code>dynamic products = Context.Sql(@"select * from Product
             where ProductId = @0 or ProductId = @1")
             .Parameters(1, 2).QueryMany&lt;dynamic&gt;();
 </code></pre>
 
-<p>\
-Named parameters:</p>
+<p>Named parameters:</p>
 
 <pre><code>dynamic products = Context.Sql(@"select * from Product
             where ProductId = @ProductId1 or ProductId = @ProductId2")
@@ -325,8 +333,7 @@ Named parameters:</p>
             .QueryMany&lt;dynamic&gt;();
 </code></pre>
 
-<p>\
-Output parameter:</p>
+<p>Output parameter:</p>
 
 <pre><code>var command = Context.Sql(@"select @ProductName = Name from Product
             where ProductId=1")
@@ -336,24 +343,21 @@ command.Execute();
 string productName = command.ParameterValue&lt;string&gt;("ProductName");
 </code></pre>
 
-<p>\
-List of parameters - in operator:</p>
+<p>List of parameters - in operator:</p>
 
 <pre><code>List&lt;int&gt; ids = new List&lt;int&gt;() { 1, 2, 3, 4 };
-//becareful here,don't leave any whitespace around in(...) syntax.
 dynamic products = Context.Sql(@"select * from Product
             where ProductId in(@0)", ids).QueryMany&lt;dynamic&gt;();
 </code></pre>
 
-<p>\
-like operator:</p>
+<p>like operator:</p>
 
 <pre><code>string cens = "%abc%";
 Context.Sql("select * from Product where ProductName like @0",cens);
 </code></pre>
 
-<p>\
-<strong>Mapping</strong>\
+<p><a name="CodeSamplesMapping"></a>
+<strong>Mapping</strong>
 Automapping - 1:1 match between the database and the .NET object:</p>
 
 <pre><code>List&lt;Product&gt; products = Context.Sql(@"select *
@@ -361,14 +365,12 @@ Automapping - 1:1 match between the database and the .NET object:</p>
             .QueryMany&lt;Product&gt;();
 </code></pre>
 
-<p>\
-Automap to a custom collection:</p>
+<p>Automap to a custom collection:</p>
 
 <pre><code>ProductionCollection products = Context.Sql("select * from Product").QueryMany&lt;Product, ProductionCollection&gt;();
 </code></pre>
 
-<p>\
-Automapping - Mismatch between the database and the .NET object, use the alias keyword in SQL:\
+<p>Automapping - Mismatch between the database and the .NET object, use the alias keyword in SQL:
 Weakly typed:</p>
 
 <pre><code>List&lt;Product&gt; products = Context.Sql(@"select p.*,
@@ -379,9 +381,9 @@ Weakly typed:</p>
                 .QueryMany&lt;Product&gt;();
 </code></pre>
 
-<p>Here the p.* which is ProductId and Name would be automapped to the properties Product.Name and Product.ProductId, and Category_CategoryId and Category_Name would be automapped to Product.Category.CategoryId and Product.Category.Name.\
-\
-Custom mapping using dynamic:</p>
+<p>Here the p.* which is ProductId and Name would be automapped to the properties Product.Name and Product.ProductId, and Category_CategoryId and Category_Name would be automapped to Product.Category.CategoryId and Product.Category.Name.</p>
+
+<p>Custom mapping using dynamic:</p>
 
 <pre><code>List&lt;Product&gt; products = Context.Sql(@"select * from Product")
             .QueryMany&lt;Product&gt;(Custom_mapper_using_dynamic);
@@ -393,8 +395,7 @@ public void Custom_mapper_using_dynamic(Product product, dynamic row)
 }
 </code></pre>
 
-<p>\
-Custom mapping using a datareader:</p>
+<p>Custom mapping using a datareader:</p>
 
 <pre><code>List&lt;Product&gt; products = Context.Sql(@"select * from Product")
             .QueryMany&lt;Product&gt;(Custom_mapper_using_datareader);
@@ -406,8 +407,7 @@ public void Custom_mapper_using_datareader(Product product, IDataReader row)
 }
 </code></pre>
 
-<p>\
-Or if you have a complex entity type where you need to control how it is created then the QueryComplexMany/QueryComplexSingle can be used:</p>
+<p>Or if you have a complex entity type where you need to control how it is created then the QueryComplexMany/QueryComplexSingle can be used:</p>
 
 <pre><code>var products = new List&lt;Product&gt;();
 Context.Sql("select * from Product").QueryComplexMany&lt;Product&gt;(products, MapComplexProduct);
@@ -421,8 +421,8 @@ private void MapComplexProduct(IList&lt;Product&gt; products, IDataReader reader
 }
 </code></pre>
 
-<p>\
-<strong>Multiple result sets</strong>\
+<p><a name="MultiResultSets"></a>
+<strong>Multiple result sets</strong>
 FluentDAO supports multiple resultsets. This allows you to do multiple queries in a single database call. When this feature is used it's important to wrap the code inside a using statement as shown below in order to make sure that the database connection is closed.</p>
 
 <pre><code>using (var command = Context.MultiResultSql)
@@ -435,9 +435,10 @@ FluentDAO supports multiple resultsets. This allows you to do multiple queries i
 }
 </code></pre>
 
-<p>The first time the Query method is called it does a single query against the database. The second time the Query is called, FluentDAO already knows that it's running in a multiple result set mode, so it reuses the data retrieved from the first query.\
-\
-<strong>Select data and Paging</strong>\
+<p>The first time the Query method is called it does a single query against the database. The second time the Query is called, FluentDAO already knows that it's running in a multiple result set mode, so it reuses the data retrieved from the first query.</p>
+
+<p><a name="SelectData"></a>
+<strong>Select data and Paging</strong>
 A select builder exists to make selecting data and paging easy:</p>
 
 <pre><code>List&lt;Product&gt; products = Context.Select&lt;Product&gt;("p.*, c.Name as Category_Name")
@@ -448,9 +449,10 @@ A select builder exists to make selecting data and paging easy:</p>
                    .Paging(1, 10).QueryMany();
 </code></pre>
 
-<p>By calling Paging(1, 10) then the first 10 products will be returned.\
-\
-<strong>Insert data</strong>\
+<p>By calling Paging(1, 10) then the first 10 products will be returned.</p>
+
+<p><a name="InsertData"></a>
+<strong>Insert data</strong>
 Using SQL:</p>
 
 <pre><code>int productId = Context.Sql(@"insert into Product(Name, CategoryId)
@@ -459,8 +461,7 @@ Using SQL:</p>
             .ExecuteReturnLastId&lt;int&gt;();
 </code></pre>
 
-<p>\
-Using a builder:</p>
+<p>Using a builder:</p>
 
 <pre><code>int productId = Context.Insert("Product")
             .Column("Name", "The Warren Buffet Way")
@@ -468,8 +469,7 @@ Using a builder:</p>
             .ExecuteReturnLastId&lt;int&gt;();
 </code></pre>
 
-<p>\
-Using a builder with automapping:</p>
+<p>Using a builder with automapping:</p>
 
 <pre><code>Product product = new Product();
 product.Name = "The Warren Buffet Way";
@@ -480,9 +480,10 @@ product.ProductId = Context.Insert&lt;Product&gt;("Product", product)
             .ExecuteReturnLastId&lt;int&gt;();
 </code></pre>
 
-<p>We send in ProductId to the AutoMap method to get AutoMap to ignore and not map the ProductId since this property is an identity field where the value is generated in the database.\
-\
-<strong>Update data</strong>\
+<p>We send in ProductId to the AutoMap method to get AutoMap to ignore and not map the ProductId since this property is an identity field where the value is generated in the database.</p>
+
+<p><a name="UpdateData"></a>
+<strong>Update data</strong>
 Using SQL:</p>
 
 <pre><code>int rowsAffected = Context.Sql(@"update Product set Name = @0
@@ -491,8 +492,7 @@ Using SQL:</p>
             .Execute();
 </code></pre>
 
-<p>\
-Using a builder:</p>
+<p>Using a builder:</p>
 
 <pre><code>int rowsAffected = Context.Update("Product")
             .Column("Name", "The Warren Buffet Way")
@@ -500,8 +500,7 @@ Using a builder:</p>
             .Execute();
 </code></pre>
 
-<p>\
-Using a builder with automapping:</p>
+<p>Using a builder with automapping:</p>
 
 <pre><code>Product product = Context.Sql(@"select * from Product
             where ProductId = 1")
@@ -514,32 +513,29 @@ int rowsAffected = Context.Update&lt;Product&gt;("Product", product)
             .Execute();
 </code></pre>
 
-<p>We send in ProductId to the AutoMap method to get AutoMap to ignore and not map the ProductId since this is the identity field that should not get updated.\
-\
-\
-<strong>IgnoreIfAutoMapFails</strong>\
-When read from database,If some data columns not mappinged with entity class,by default ,will throw exception.\
-\
-if you want ignore the exception, or the property not used for map data table,then you can use the IgnoreIfAutoMapFails(true),this will ignore the exception when read mapping error.</p>
+<p>We send in ProductId to the AutoMap method to get AutoMap to ignore and not map the ProductId since this is the identity field that should not get updated.</p>
+
+<p><strong>IgnoreIfAutoMapFails</strong>
+When read from database,If some data columns not mappinged with entity class,by default ,will throw exception.</p>
+
+<p>if you want ignore the exception, or the property not used for map data table,then you can use the IgnoreIfAutoMapFails(true),this will ignore the exception when read mapping error.</p>
 
 <pre><code>context.IgnoreIfAutoMapFails(true);
 </code></pre>
 
-<p>\
-\
-<strong>Ignore Attribute</strong>\
+<p><a name="ignore"></a>
+<strong>Ignore Attribute</strong>
 And sometimes you need to add some extension property in entity class, when Insert/Update,will be exception,because not find the data column.on this time,you can add the <a href="/wikipage?title=Ignore&amp;referringTitle=Documentation">Ignore</a> to the special property,like this:</p>
 
 <pre><code>[Ignore]
 public int TotalCount{get;set;}
 </code></pre>
 
-<p>\
-this will skip the property when insert or update.\
-\
-so,if you used to extension entity class,the better way is use both context.IgnoreIfAutoMapFails and Ignore attribute.notice this maybe get wrong data and you can't catch easily.\
- \
-<strong>Insert and update - common Fill method</strong></p>
+<p>this will skip the property when insert or update.</p>
+
+<p>so,if you used to extension entity class,the better way is use both context.IgnoreIfAutoMapFails and Ignore attribute.notice this maybe get wrong data and you can't catch easily.</p>
+
+<p><strong>Insert and update - common Fill method</strong></p>
 
 <pre><code>var product = new Product();
 product.Name = "The Warren Buffet Way";
@@ -556,8 +552,8 @@ public void FillBuilder(IInsertUpdateBuilder&lt;Product&gt; builder)
 }
 </code></pre>
 
-<p>\
-<strong>Delete data</strong>\
+<p><a name="DeleteData"></a>
+<strong>Delete data</strong>
 Using SQL:</p>
 
 <pre><code>int rowsAffected = Context.Sql(@"delete from Product
@@ -565,16 +561,15 @@ Using SQL:</p>
             .Execute();
 </code></pre>
 
-<p>\
-Using a builder:</p>
+<p>Using a builder:</p>
 
 <pre><code>int rowsAffected = Context.Delete("Product")
             .Where("ProductId", 1)
             .Execute();
 </code></pre>
 
-<p>\
-<strong>Stored procedure</strong>\
+<p><a name="StoredProcedures"></a>
+<strong>Stored procedure</strong>
 Using SQL:</p>
 
 <pre><code>var rowsAffected = Context.Sql("ProductUpdate")
@@ -584,16 +579,14 @@ Using SQL:</p>
             .Execute();
 </code></pre>
 
-<p>\
-Using a builder:</p>
+<p>Using a builder:</p>
 
 <pre><code>var rowsAffected = Context.StoredProcedure("ProductUpdate")
             .Parameter("Name", "The Warren Buffet Way")
             .Parameter("ProductId", 1).Execute();
 </code></pre>
 
-<p>\
-Using a builder with automapping:</p>
+<p>Using a builder with automapping:</p>
 
 <pre><code>var product = Context.Sql("select * from Product where ProductId = 1")
             .QuerySingle&lt;Product&gt;();
@@ -604,8 +597,7 @@ var rowsAffected = Context.StoredProcedure&lt;Product&gt;("ProductUpdate", produ
             .AutoMap(x =&gt; x.CategoryId).Execute();
 </code></pre>
 
-<p>\
-Using a builder with automapping and expressions:</p>
+<p>Using a builder with automapping and expressions:</p>
 
 <pre><code>var product = Context.Sql("select * from Product where ProductId = 1")
             .QuerySingle&lt;Product&gt;();
@@ -616,8 +608,8 @@ var rowsAffected = Context.StoredProcedure&lt;Product&gt;("ProductUpdate", produ
             .Parameter(x =&gt; x.Name).Execute();
 </code></pre>
 
-<p>\
-<strong>Transactions</strong>\
+<p><a name="Transactions"></a>
+<strong>Transactions</strong>
 FluentDAO supports transactions. When you use transactions its important to wrap the code inside a using statement to make sure that the database connection is closed. By default, if any exception occur or if Commit is not called then Rollback will automatically be called.</p>
 
 <pre><code>using (var context = Context.UseTransaction(true))
@@ -634,8 +626,26 @@ FluentDAO supports transactions. When you use transactions its important to wrap
 }
 </code></pre>
 
-<p>\
-<strong>Entity factory</strong>\
+<p><a name="UseAutoCommitTransaction"></a>
+<strong>UseAutoCommitTransaction</strong>
+And Now(2016/04/29) FluentDao support automatic commit transaction.it will help some people who use Transaction but always forgot to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".</p>
+
+<pre><code>using (var context = Context.UseAutoCommitTransaction(true))
+{
+    context.Sql("update Product set Name = @0 where ProductId = @1")
+                .Parameters("The Warren Buffet Way", 1)
+                .Execute();
+
+    context.Sql("update Product set Name = @0 where ProductId = @1")
+                .Parameters("Bill Gates Bio", 2)
+                .Execute();
+}
+</code></pre>
+
+<p>It will be commit when you use UseAutoCommitTransaction(true)，whether you do commit() or not.</p>
+
+<p><a name="EntityFactory"></a>
+<strong>Entity factory</strong>
 The entity factory is responsible for creating object instances during automapping. If you have some complex business objects that require special actions during creation, you can create your own custom entity factory:</p>
 
 <pre><code>List&lt;Product&gt; products = Context.EntityFactory(new CustomEntityFactory())
@@ -650,24 +660,21 @@ public class CustomEntityFactory : IEntityFactory
     }
 }
 </code></pre>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/leadnt/FluentDAO/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/leadnt/FluentDAO/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+<p><a name="contactme"></a>
+<strong>Contact Me</strong></p>
 
-          <p class="repo-owner"><a href="https://github.com/leadnt/FluentDAO"></a> is maintained by <a href="https://github.com/leadnt">leadnt</a>.</p>
+<p>Email:<a href="mailto:roy@leadnt.com">roy@leadnt.com</a></p>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+<p>Above content is all about FluentDAO 3.2.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/leadnt/FluentDAO">FluentDAO</a> is maintained by <a href="https://github.com/leadnt">leadnt</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
 
   
   </body>
