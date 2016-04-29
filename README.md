@@ -35,12 +35,15 @@ Table of Contents
     -   [Mapping](#CodeSamplesMapping)
     -   [Multiple result sets](#MultiResultSets)
     -   [Select data & Paging](#SelectData)
+    -   [Ignore fields during CRUD](#ignore)
     -   [Insert data](#InsertData)
     -   [Update data](#UpdateData)
     -   [Delete data](#DeleteData)
     -   [Stored procedures](#StoredProcedures)
     -   [Transactions](#Transactions)
+    -   [UseAutoCommitTransaction](#UseAutoCommitTransaction)
     -   [Entity factory](#EntityFactory)
+    -   [Contact Me](#contactme)
 
 Contents
 ========
@@ -528,12 +531,13 @@ FluentDAO supports transactions. When you use transactions its important to wrap
         context.Commit();
     }
 
-** <a href="#UseAutoCommitTransaction"></a>UseAutoCommitTransaction **
+<a href="#UseAutoCommitTransaction"></a>
+**UseAutoCommitTransaction**
 And Now(2016/04/29) FluentDao support automatic commit transaction.it's can help some people who use Transaction but always forget to commit the transaction.the function is "IDbContext().UseAutoCommitTransaction(true)".
 
 
 <a name="EntityFactory"></a>
-** Entity factory**
+**Entity factory**
 The entity factory is responsible for creating object instances during automapping. If you have some complex business objects that require special actions during creation, you can create your own custom entity factory:
 
     List<Product> products = Context.EntityFactory(new CustomEntityFactory())
@@ -547,3 +551,13 @@ The entity factory is responsible for creating object instances during automappi
             return Activator.CreateInstance(type);
         }
     }
+    
+<a name="contactme"></a>
+**Contact Me**
+
+Email:roy@leadnt.com
+
+Above content is all about FluentDAO 3.2.
+
+
+
