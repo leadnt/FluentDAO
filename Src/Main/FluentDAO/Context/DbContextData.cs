@@ -5,6 +5,9 @@ namespace FluentDAO
 	public class DbContextData
 	{
 		public bool UseTransaction { get; set; }
+
+        public bool UseTransAutoCommit { get; set; }
+
 		public bool UseSharedConnection { get; set; }
 		public System.Data.IDbConnection Connection { get; set; }
 		public System.Data.Common.DbProviderFactory AdoNetProvider { get; set; }
@@ -26,6 +29,7 @@ namespace FluentDAO
 		{
 			IgnoreIfAutoMapFails = false;
 			UseTransaction = false;
+            UseTransAutoCommit = false;
 			IsolationLevel = IsolationLevel.ReadCommitted;
 			EntityFactory = new EntityFactory();
 			CommandTimeout = Int32.MinValue;

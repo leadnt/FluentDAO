@@ -24,8 +24,18 @@
 				Data.OnConnectionClosed(new ConnectionEventArgs(Data.Connection));
 		}
 
+
+        internal void AutoCommitTransaction()
+        {
+            if(Data.UseTransAutoCommit && Data.Transaction != null)
+            {
+                Commit();
+            }
+        }
+
 		public void Dispose()
 		{
+            AutoCommitTransaction();
 			CloseSharedConnection();
 		}
 	}

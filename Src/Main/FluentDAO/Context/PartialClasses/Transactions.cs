@@ -10,6 +10,13 @@ namespace FluentDAO
 			return this;
 		}
 
+        public IDbContext UseAutoCommitTransaction(bool autoCommit)
+        {
+            UseTransaction(autoCommit);
+            Data.UseTransAutoCommit = autoCommit;
+            return this;
+        }
+
 		public IDbContext UseSharedConnection(bool useSharedConnection)
 		{
 			Data.UseSharedConnection = useSharedConnection;

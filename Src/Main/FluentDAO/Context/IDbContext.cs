@@ -8,6 +8,9 @@ namespace FluentDAO
 		DbContextData Data { get; }
 		IDbContext IgnoreIfAutoMapFails(bool ignoreIfAutoMapFails);
 		IDbContext UseTransaction(bool useTransaction);
+
+        IDbContext UseAutoCommitTransaction(bool useTransaction);
+
 		IDbContext UseSharedConnection(bool useSharedConnection);
 		IDbContext CommandTimeout(int timeout);
 		IDbCommand Sql(string sql, params object[] parameters);
